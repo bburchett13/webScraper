@@ -1,35 +1,40 @@
 from urllib.request import urlopen
 import re
+import random
 
-url = "http://olympus.realpython.org/profiles/dionysus"
+pageNum = random.randint(1,100)
 
+
+url = "https://www.goodreads.com/quotes?page=" + str(pageNum)
+
+# print(url)
 page = urlopen(url)
 
-html_bytes = page.read()
-html = html_bytes.decode("utf-8")
+# html_bytes = page.read()
+# html = html_bytes.decode("utf-8")
 
-print(html)
+# print(html)
 
-namePattern = "<h2>.*?</h2>"
+# namePattern = "<h2>.*?</h2>"
 
-name_results = re.search(namePattern, html, re.IGNORECASE)
+# name_results = re.search(namePattern, html, re.IGNORECASE)
 
-name = name_results.group()
-name = re.sub("<.*?>", "", name)
-name = re.sub(".*? ", "", name)
+# name = name_results.group()
+# name = re.sub("<.*?>", "", name)
+# name = re.sub(".*? ", "", name)
 
-print(name)
+# print(name)
 
-colorPattern = "<br.*?>\n.*?\n</center.*?>"
+# colorPattern = "<br.*?>\n.*?\n</center.*?>"
 
-color_results = re.search(colorPattern, html, re.IGNORECASE)
+# color_results = re.search(colorPattern, html, re.IGNORECASE)
 
-color = color_results.group()
-color = re.sub("<.*?>", "", color)
-color = re.sub(".*? ", "", color)
+# color = color_results.group()
+# color = re.sub("<.*?>", "", color)
+# color = re.sub(".*? ", "", color)
 
 
-print(color)
+# print(color)
 
 # pattern = "<title.*?>.*?</title.*?>"
 
