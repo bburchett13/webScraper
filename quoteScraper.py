@@ -1,45 +1,39 @@
-from urllib.request import urlopen
-import re
+from urllib.request import urlopen, Request
 import random
+import mechanicalsoup
+from bs4 import BeautifulSoup
+import urllib
 
+# Create browser
+browser= mechanicalsoup.StatefulBrowser()
+
+# Find random page number
 pageNum = random.randint(1,100)
 
-
+# Create URL with random page number from which to grab quote
 url = "https://www.goodreads.com/quotes?page=" + str(pageNum)
 
-# print(url)
-page = urlopen(url)
+# Create URL request with Firefox as the agent (otherwise we get SSL issues)
+req = urllib.request.Request(
+    url, 
+    data=None, 
+    headers={
+        'User-Agent': 'Mozilla'
+    }
+)
 
-# html_bytes = page.read()
-# html = html_bytes.decode("utf-8")
+# Open the URL
+page = urllib.request.urlopen(req)
 
-# print(html)
+# Parse URL using Beatiful Soup
+soup = BeautifulSoup(page.read().decode('utf-8'), "html.parser")
 
-# namePattern = "<h2>.*?</h2>"
+# Find divs containing Quote Text
+quoteDivs = soup.find_all('div', class_='quoteText')
 
-# name_results = re.search(namePattern, html, re.IGNORECASE)
+# Grab a random quote from all quotes including author and source (if included)
+randomQuote = random.choice(quoteDivs)
 
-# name = name_results.group()
-# name = re.sub("<.*?>", "", name)
-# name = re.sub(".*? ", "", name)
+# Print Quote
+print(randomQuote.text)
 
-# print(name)
-
-# colorPattern = "<br.*?>\n.*?\n</center.*?>"
-
-# color_results = re.search(colorPattern, html, re.IGNORECASE)
-
-# color = color_results.group()
-# color = re.sub("<.*?>", "", color)
-# color = re.sub(".*? ", "", color)
-
-
-# print(color)
-
-# pattern = "<title.*?>.*?</title.*?>"
-
-# match_results = re.search(pattern, html, re.IGNORECASE)
-
-# title = match_results.group()
-# title = re.sub("<.*?>", "", title)
-# print(title)

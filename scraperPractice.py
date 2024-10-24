@@ -10,31 +10,31 @@ html = html_bytes.decode("utf-8")
 
 print(html)
 
-namePattern = "<h2>.*?</h2>"
+# namePattern = "<h2>.*?</h2>"
 
-name_results = re.search(namePattern, html, re.IGNORECASE)
+# name_results = re.search(namePattern, html, re.IGNORECASE)
 
-name = name_results.group()
-name = re.sub("<.*?>", "", name)
-name = re.sub(".*? ", "", name)
+# name = name_results.group()
+# name = re.sub("<.*?>", "", name)
+# name = re.sub(".*? ", "", name)
 
-print(name)
+# print(name)
 
-colorPattern = "<br.*?>\n.*?\n</center.*?>"
+# colorPattern = "<br.*?>\n.*?\n</center.*?>"
 
-color_results = re.search(colorPattern, html, re.IGNORECASE)
+# color_results = re.search(colorPattern, html, re.IGNORECASE)
 
-color = color_results.group()
-color = re.sub("<.*?>", "", color)
-color = re.sub(".*? ", "", color)
+# color = color_results.group()
+# color = re.sub("<.*?>", "", color)
+# color = re.sub(".*? ", "", color)
 
 
-print(color)
+# print(color)
 
-# pattern = "<title.*?>.*?</title.*?>"
+# # pattern = "<title.*?>.*?</title.*?>"
 
-# match_results = re.search(pattern, html, re.IGNORECASE)
+# # match_results = re.search(pattern, html, re.IGNORECASE)
 
-# title = match_results.group()
-# title = re.sub("<.*?>", "", title)
-# print(title)
+# # title = match_results.group()
+# # title = re.sub("<.*?>", "", title)
+# # print(title)
